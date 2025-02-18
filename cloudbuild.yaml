@@ -6,6 +6,7 @@ steps:
     args:
       - "-c"
       - |
+        ls -l
         pip install pylint  # Instalamos pylint
         pylint --disable=all ejemplo-py.py  # Ejecutamos pylint sin advertencias
 
