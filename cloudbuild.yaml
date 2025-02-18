@@ -7,12 +7,12 @@ steps:
       - |
         echo "📂 Listando archivos en el directorio actual..."
         ls -lah
-        echo "🔍 Verificando si el archivo 'ejemplo-py.py' existe..."
-        if [ -f "ejemplo-py.py" ]; then
+        echo "🔍 Verificando si el archivo 'ejemplo_py.py' existe..."
+        if [ -f "ejemplo_py.py" ]; then
           echo "✅ Archivo encontrado, ejecutando pylint..."
-          pip install pylint && pylint ejemplo-py.py
+          pip install pylint && pylint ejemplo_py.py
         else
-          echo "❌ ERROR: No se encontró el archivo 'ejemplo-py.py'"
+          echo "❌ ERROR: No se encontró el archivo 'ejemplo_py.py'"
           exit 1
         fi
 
