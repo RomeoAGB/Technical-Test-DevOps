@@ -1,11 +1,11 @@
 steps:
-  - name: "gcr.io/cloud-builders/python:3.9"
+  - name: "python:3.9"
     id: Lint
     entrypoint: "bash"
     args:
       - "-c"
       - |
-        pip install pylint && pylint ejemplo-py.py  # Ejecutamos pylint en el archivo ejemplo-py.py
+        pip install pylint && pylint ejemplo-py.py  # Analiza el código Python con pylint
 
   - name: "gcr.io/cloud-builders/docker"
     id: Build
