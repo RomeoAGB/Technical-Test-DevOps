@@ -1,0 +1,25 @@
+steps:
+  - name: "gcr.io/cloud-builders/python"
+    id: Lint
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        pip install pylint && pylint ejemplo-py.py  # Ejecutamos pylint en el archivo ejemplo-py.py
+
+  - name: "gcr.io/cloud-builders/docker"
+    id: Build
+    args:
+      - "build"
+      - "-t"
+      - "gcr.io/tu-proyecto/ejemplo-imagen:latest"
+      - "."
+
+  - name: "gcr.io/cloud-builders/docker"
+    id: Push
+    args:
+      - "push"
+      - "gcr.io/tu-proyecto/ejemplo-imagen:latest"
+
+images:
+  - "gcr.io/tu-proyecto/ejemplo-imagen:latest"
