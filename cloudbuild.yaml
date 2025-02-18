@@ -1,5 +1,5 @@
 steps:
-  - name: "python:3.9"
+  - name: "gcr.io/deeplearning-platform-release/python39"
     id: Lint
     entrypoint: "bash"
     args:
