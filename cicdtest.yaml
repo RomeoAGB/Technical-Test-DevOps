@@ -22,4 +22,4 @@ steps:
       - "gcr.io/tu-proyecto/imagenPrueba:latest"
 
 images:
-  - "gcr.io/tu-proyecto/ejemplo-imagen:latest"
+  - "gcr.io/tu-proyecto/imagenPrueba:latest"
