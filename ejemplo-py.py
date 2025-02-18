@@ -1,9 +1,10 @@
-def saludar(nombre):
-    return f"¡Hola, {nombre}!"
+def saludar(nombre, apellido):
+    return f"¡Hola, {nombre} {apellido}!"
 
 def main():
     nombre = "Romeo"
-    saludo = saludar(nombre)
+    apellido = "Gómez"
+    saludo = saludar(nombre, apellido)
     print(saludo)
 
 if __name__ == "__main__":
