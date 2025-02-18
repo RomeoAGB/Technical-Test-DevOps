@@ -1,11 +1,13 @@
 steps:
-  - name: "gcr.io/deeplearning-platform-release/python39"
+  # Paso 1: Instalar Python y ejecutar Lint
+  - name: "gcr.io/cloud-builders/bash"
     id: Lint
-    entrypoint: "bash"
     args:
       - "-c"
       - |
-        pip install pylint && pylint ejemplo-py.py  # Analiza el código Python con pylint
+        apt update && apt install -y python3 python3-pip
+        pip3 install pylint
+        pylint ejemplo-py.py  # Ejecutamos pylint en el archivo ejemplo-py.py
 
   - name: "gcr.io/cloud-builders/docker"
     id: Build
