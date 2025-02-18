@@ -1,13 +1,14 @@
 steps:
-  # Paso 1: Instalar Python y ejecutar Lint
   - name: "debian:latest"
     id: Lint
     entrypoint: "bash"
     args:
       - "-c"
       - |
-        apt update && apt install -y python3 python3-pip
-        pip3 install pylint
+        apt update && apt install -y python3 python3-pip python3-venv
+        python3 -m venv /tmp/venv  # Creamos un entorno virtual
+        source /tmp/venv/bin/activate  # Activamos el entorno virtual
+        pip install pylint  # Instalamos pylint dentro del entorno virtual
         pylint ejemplo-py.py  # Ejecutamos pylint en el archivo ejemplo-py.py
 
   - name: "gcr.io/cloud-builders/docker"
