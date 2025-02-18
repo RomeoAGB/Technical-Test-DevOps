@@ -23,3 +23,7 @@ steps:
 
 images:
   - "gcr.io/tu-proyecto/imagenPrueba:latest"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  logs_bucket: bucketlog-test
