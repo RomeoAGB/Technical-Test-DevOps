@@ -6,4 +6,4 @@ COPY ejemplo-py.py /app/
 
 RUN pip install pylint
 
-CMD ["python", "ejemplo-py.py"]
+CMD ["python", "ejemplo:py.py"]
