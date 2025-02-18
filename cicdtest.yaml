@@ -12,14 +12,14 @@ steps:
     args:
       - "build"
       - "-t"
-      - "gcr.io/tu-proyecto/ejemplo-imagen:latest"
+      - "gcr.io/tu-proyecto/imagenPrueba:latest"
       - "."
 
   - name: "gcr.io/cloud-builders/docker"
     id: Push
     args:
       - "push"
-      - "gcr.io/tu-proyecto/ejemplo-imagen:latest"
+      - "gcr.io/tu-proyecto/imagenPrueba:latest"
 
 images:
   - "gcr.io/tu-proyecto/ejemplo-imagen:latest"
