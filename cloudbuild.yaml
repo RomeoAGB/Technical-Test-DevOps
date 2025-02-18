@@ -1,16 +1,22 @@
 steps:
-  # Paso 1: Ejecutar Lint usando Python 3.9
+  # Paso 1: Verificar que el archivo 'ejemplo-py.py' existe antes de ejecutar pylint
   - name: "python:3.9"
-    id: Lint
     entrypoint: "bash"
     args:
       - "-c"
       - |
-        ls -l
-        pip install pylint  # Instalamos pylint
-        pylint --disable=all ejemplo-py.py  # Ejecutamos pylint sin advertencias
+        echo "📂 Listando archivos en el directorio actual..."
+        ls -lah
+        echo "🔍 Verificando si el archivo 'ejemplo-py.py' existe..."
+        if [ -f "ejemplo-py.py" ]; then
+          echo "✅ Archivo encontrado, ejecutando pylint..."
+          pip install pylint && pylint ejemplo-py.py
+        else
+          echo "❌ ERROR: No se encontró el archivo 'ejemplo-py.py'"
+          exit 1
+        fi
 
-  # Paso 2: Construir la imagen Docker
+  # Paso 2: Construcción de la imagen Docker
   - name: "gcr.io/cloud-builders/docker"
     id: Build
     args:
@@ -19,17 +25,15 @@ steps:
       - "gcr.io/miprimerproyecto-308719/imagenprueba:latest"
       - "."
 
-  # Paso 3: Enviar la imagen al Container Registry
+  # Paso 3: Subir la imagen a Container Registry
   - name: "gcr.io/cloud-builders/docker"
     id: Push
     args:
       - "push"
       - "gcr.io/miprimerproyecto-308719/imagenprueba:latest"
 
-# Especificamos qué imágenes serán generadas en este pipeline
 images:
   - "gcr.io/miprimerproyecto-308719/imagenprueba:latest"
 
-# Opciones adicionales para Cloud Build
 options:
   logging: CLOUD_LOGGING_ONLY
