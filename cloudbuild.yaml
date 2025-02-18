@@ -1,7 +1,8 @@
 steps:
   # Paso 1: Instalar Python y ejecutar Lint
-  - name: "gcr.io/cloud-builders/bash"
+  - name: "debian:latest"
     id: Lint
+    entrypoint: "bash"
     args:
       - "-c"
       - |
