@@ -5,35 +5,29 @@ steps:
     args:
       - "-c"
       - |
-        echo "📂 Listando archivos en el directorio actual..."
         ls -lah
-        echo "🔍 Verificando si el archivo 'ejemplo_py.py' existe..."
         if [ -f "ejemplo_py.py" ]; then
-          echo "✅ Archivo encontrado, ejecutando pylint..."
           pip install pylint && pylint ejemplo_py.py
         else
-          echo "❌ ERROR: No se encontró el archivo 'ejemplo_py.py'"
           exit 1
         fi
 
-  # Paso 2: Construcción de la imagen Docker
   - name: "gcr.io/cloud-builders/docker"
     id: Build
     args:
       - "build"
       - "-t"
-      - "gcr.io/miprimerproyecto-308719/imagenprueba:latest"
+      - "us-docker.pkg.dev/miprimerproyecto-308719/gcr-repo/imagenprueba:latest"
       - "."
 
-  # Paso 3: Subir la imagen a Container Registry
   - name: "gcr.io/cloud-builders/docker"
     id: Push
     args:
       - "push"
-      - "gcr.io/miprimerproyecto-308719/imagenprueba:latest"
+      - "us-docker.pkg.dev/miprimerproyecto-308719/gcr-repo/imagenprueba:latest"
 
 images:
-  - "gcr.io/miprimerproyecto-308719/imagenprueba:latest"
+  - "us-docker.pkg.dev/miprimerproyecto-308719/gcr-repo/imagenprueba:latest"
 
 options:
   logging: CLOUD_LOGGING_ONLY
